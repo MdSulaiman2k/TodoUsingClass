@@ -8,21 +8,6 @@ class Todo
     @is_completed = completed
   end
 
-  # returns @text
-  def text
-    @text
-  end
-
-  # returns @due_date
-  def due_date
-    @due_date
-  end
-
-  # returns @is_completed
-  def completed
-    @is_completed
-  end
-
   # returns booleaan value overdue or not
   def overdue?
     @due_date < Date.today
