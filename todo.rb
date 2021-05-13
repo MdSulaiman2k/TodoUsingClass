@@ -1,65 +1,78 @@
 require "date"
 
 class Todo
-    def initialize( text , dueDate , completed  )
-        @text = text 
-        @due_date =  dueDate 
-        @is_completed = completed
-    end
-    
-    def text
-        @text
-    end
+  #contructor
+  def initialize(text, dueDate, completed)
+    @text = text
+    @due_date = dueDate
+    @is_completed = completed
+  end
 
-    def due_date
-        @due_date
-    end
-    
-    def completed
-        @is_completed
-    end
+  # returns @text
+  def text
+    @text
+  end
 
-    def overdue?
-        @due_date < Date.today
-    end
+  # returns @due_date
+  def due_date
+    @due_date
+  end
 
-    def due_today?
-        @due_date == Date.today
-    end
+  # returns @is_completed
+  def completed
+    @is_completed
+  end
 
-    def due_later?
-        @due_date > Date.today
-    end
+  # returns booleaan value overdue or not
+  def overdue?
+    @due_date < Date.today
+  end
 
-    def to_displayable_string
-        "[#{(@is_completed)? "X": " "}]  #{@text} #{@due_date if(!due_today?)}"
-    end
+  # returns booleaan value duetoday or not
+  def due_today?
+    @due_date == Date.today
+  end
+
+  # returns booleaan value duelater or not
+  def due_later?
+    @due_date > Date.today
+  end
+
+  # retuns the string what pattern user wants
+  def to_displayable_string
+    "[#{(@is_completed) ? "X" : " "}]  #{@text} #{@due_date if (!due_today?)}"
+  end
 end
 
 class TodosList
-    def initialize(todos)
-        @todos = todos
-    end
+  def initialize(todos)
+    @todos = todos
+  end
 
-    def add(todo) 
-        @todos.push(todo)
-    end
+  #it will push the todo in the todolist
+  def add(todo)
+    @todos.push(todo)
+  end
 
-    def overdue
-        TodosList.new(@todos.filter { |todo| todo.overdue? })
-    end 
-    
-    def due_today
-        TodosList.new(@todos.filter{ |todo| todo.due_today? })
-    end
+  # it will return the todolist of overdue
+  def overdue
+    TodosList.new(@todos.filter { |todo| todo.overdue? })
+  end
 
-    def due_later
-        TodosList.new(@todos.filter{ |todo| todo.due_later? })
-    end
-    
-    def to_displayable_list
-        displaytodo = @todos.map { |todo| todo.to_displayable_string }
-    end
+  # it will return the todolist of duetoday
+  def due_today
+    TodosList.new(@todos.filter { |todo| todo.due_today? })
+  end
+
+  # it will return the todolist of duelater
+  def due_later
+    TodosList.new(@todos.filter { |todo| todo.due_later? })
+  end
+
+  # display the todolist
+  def to_displayable_list
+    displaytodo = @todos.map { |todo| todo.to_displayable_string }
+  end
 end
 
 date = Date.today
