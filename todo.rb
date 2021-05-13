@@ -56,7 +56,7 @@ class TodosList
 
   # display the todolist
   def to_displayable_list
-    displaytodo = @todos.map { |todo| todo.to_displayable_string }
+    displaytodo = @todos.map { |todo| todo.to_displayable_string }.join("\n")
   end
 end
 
