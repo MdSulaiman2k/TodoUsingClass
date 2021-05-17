@@ -25,7 +25,9 @@ class Todo
 
   # retuns the string what pattern user wants
   def to_displayable_string
-    "[#{(@is_completed) ? "X" : " "}]  #{@text} #{@due_date if (!due_today?)}"
+    display_status = @is_completed ? "[X]" : "[ ]"
+    display_date = due_today? ? nil : @due_date
+    "#{display_status} #{@text} #{display_date}"
   end
 end
 
